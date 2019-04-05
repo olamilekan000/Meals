@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "nyc": "nyc --reporter=html --reporter=text mocha --timeout 60000 --require @babel/register --require @babel/polyfill test/*.js --exit",
-    "test": "SET NODE_ENV=test&& npm run nyc",
+    "test:dev": "SET NODE_ENV=test&& npm run nyc",
+    "test": "NODE_ENV=test&& npm run nyc",
     "start": "nodemon --exec babel-node app.js"
   },
   "keywords": [],
