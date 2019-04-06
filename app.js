@@ -16,28 +16,28 @@ app.use(helmet())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.use(BASE_URI, router)
-
-app.post(`${BASE_URI}/*`, notFound.retrunNotFound)
-app.put(`${BASE_URI}/*`, notFound.retrunNotFound)
-app.delete(`${BASE_URI}/*`, notFound.retrunNotFound)
-
-app.get(`/`, (req, res) => {
-	return res.status(200).json({
-		message: "Base url is => /api/v1"
-	})
-})
-
-app.get(`${BASE_URI}/`, (req, res) => {
+app.get(`${BASE_URI}`, (req, res) => {
 	return res.status(200).json({
 		message: "Hey! Meal's ready!!"
 	})
 })
 
+app.post(`${BASE_URI}/*`, notFound.returnNotFound)
+app.put(`${BASE_URI}/*`, notFound.returnNotFound)
+app.delete(`${BASE_URI}/*`, notFound.returnNotFound)
+
+app.use(BASE_URI, router)
+
 app.use((err, req, res) => {
 	res.status(500).json({
 		message: 'server error',
 		error: err
+	})
+})
+
+app.get(`/`, (req, res) => {
+	return res.status(200).json({
+		message: "Base url is => /api/v1"
 	})
 })
 
