@@ -22,6 +22,12 @@ app.post(`${BASE_URI}/*`, notFound.retrunNotFound)
 app.put(`${BASE_URI}/*`, notFound.retrunNotFound)
 app.delete(`${BASE_URI}/*`, notFound.retrunNotFound)
 
+app.get(`/`, (req, res) => {
+	return res.status(200).json({
+		message: "Base url is => /api/v1"
+	})
+})
+
 app.get(`${BASE_URI}/`, (req, res) => {
 	return res.status(200).json({
 		message: "Hey! Meal's ready!!"
