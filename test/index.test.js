@@ -77,6 +77,21 @@ describe('tests for meal app', () => {
 		})
 	})
 
+	describe('Application start', () => {
+		it('Application start', done => {
+			chai.request(app)
+				.get(`/`)
+				.set('content-type', 'application/json')
+				.end((err, res) => {
+					res.should.have.status(200)
+					res.type.should.eql('application/json')
+					should.exist(res.body.message)
+					res.body.message.should.eql('Base url is => /api/v1')
+					done()
+				})
+		})
+	})	
+
 	describe('gets all food categories', () => {
 		it('gets all the food categories', done => {
 			chai.request(app)

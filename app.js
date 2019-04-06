@@ -22,6 +22,12 @@ app.get(`${BASE_URI}`, (req, res) => {
 	})
 })
 
+app.get(`/`, (req, res) => {
+	return res.status(200).json({
+		message: "Base url is => /api/v1"
+	})
+})
+
 app.use(BASE_URI, router)
 
 app.post(`${BASE_URI}/*`, notFound.returnNotFound)
@@ -32,12 +38,6 @@ app.use((err, req, res) => {
 	res.status(500).json({
 		message: 'server error',
 		error: err
-	})
-})
-
-app.get(`/`, (req, res) => {
-	return res.status(200).json({
-		message: "Base url is => /api/v1"
 	})
 })
 
