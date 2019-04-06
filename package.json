@@ -7,7 +7,9 @@
     "nyc": "nyc --reporter=html --reporter=text mocha --timeout 60000 --require @babel/register --require @babel/polyfill test/*.js --exit",
     "test:dev": "SET NODE_ENV=test&& npm run nyc",
     "test": "NODE_ENV=test&& npm run nyc",
-    "start": "nodemon --exec babel-node app.js"
+    "dev": "nodemon --exec babel-node app.js",
+    "start": "babel-node app.js",
+    "lint": "eslint --fix app.js ./src"
   },
   "keywords": [],
   "author": "Olalekan Odukoya",
@@ -18,8 +20,10 @@
     "@babel/polyfill": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "@babel/register": "^7.4.0",
+    "apidoc": "^0.17.7",
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
+    "eslint": "^5.16.0",
     "mocha": "^6.0.2",
     "nyc": "^13.3.0"
   },

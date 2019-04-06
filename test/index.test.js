@@ -15,28 +15,14 @@ const badData = {"mealIds":[]}
 describe('tests for meal app', () => {
 
 	describe('Not found requests', () => {
-		it('returns a not found response when requests is made to a non exitsing route', (done) => {
-			chai.request(app)
-				.get(`${BASE_URL}/meal`)
-				.set('content-type', 'application/json')
-				.end((err, res) => {
-					res.should.have.status(404);
-					res.type.should.eql('application/json');
-					should.exist(res.body.message)
-					should.exist(res.body.error)
-					res.body.message.should.eql(`The resource doesn't exist`)
-					res.body.error.should.eql(`Not found!`)
-					done()
-				})
-		})
 
-		it('returns a not found response when requests is made to a non exitsing route', (done) => {
+		it('returns a not found response when requests is made to a non exitsing route: POST', (done) => {
 			chai.request(app)
 				.post(`${BASE_URL}/meal`)
 				.set('content-type', 'application/json')
 				.end((err, res) => {
-					res.should.have.status(404);
-					res.type.should.eql('application/json');
+					res.should.have.status(404)
+					res.type.should.eql('application/json')
 					should.exist(res.body.message)
 					should.exist(res.body.error)
 					res.body.message.should.eql(`The resource doesn't exist`)
@@ -45,13 +31,13 @@ describe('tests for meal app', () => {
 				})
 		})
 
-		it('returns a not found response when requests is made to a non exitsing route', (done) => {
+		it('returns a not found response when requests is made to a non exitsing route: PUT', (done) => {
 			chai.request(app)
 				.put(`${BASE_URL}/meal`)
 				.set('content-type', 'application/json')
 				.end((err, res) => {
-					res.should.have.status(404);
-					res.type.should.eql('application/json');
+					res.should.have.status(404)
+					res.type.should.eql('application/json')
 					should.exist(res.body.message)
 					should.exist(res.body.error)
 					res.body.message.should.eql(`The resource doesn't exist`)
@@ -60,13 +46,13 @@ describe('tests for meal app', () => {
 				})
 		})
 
-		it('returns a not found response when requests is made to a non exitsing route', (done) => {
+		it('returns a not found response when requests is made to a non exitsing route: DELETE', (done) => {
 			chai.request(app)
 				.delete(`${BASE_URL}/meal`)
 				.set('content-type', 'application/json')
 				.end((err, res) => {
-					res.should.have.status(404);
-					res.type.should.eql('application/json');
+					res.should.have.status(404)
+					res.type.should.eql('application/json')
 					should.exist(res.body.message)
 					should.exist(res.body.error)
 					res.body.message.should.eql(`The resource doesn't exist`)
@@ -84,7 +70,7 @@ describe('tests for meal app', () => {
 				.end((err, res) => {
 					res.should.have.status(200)
 					res.type.should.eql('application/json')
-					expect(res.body.data).to.be.an('array');
+					expect(res.body.data).to.be.an('array')
 					should.exist(res.body.data[0].idCategory)
 					should.exist(res.body.data[0].strCategory)
 					should.exist(res.body.data[0].strCategoryThumb)
@@ -103,7 +89,7 @@ describe('tests for meal app', () => {
 				.end((err, res) => {
 					res.should.have.status(200)
 					res.type.should.eql('application/json')
-					expect(res.body.leastIngredientMeal).to.be.an('array');
+					expect(res.body.leastIngredientMeal).to.be.an('array')
 					should.exist(res.body.leastIngredientMeal[0].idMeal)
 					should.exist(res.body.leastIngredientMeal[0].strMeal)
 					should.exist(res.body.leastIngredientMeal[0].strCategory)
@@ -152,6 +138,21 @@ describe('tests for meal app', () => {
 					done()
 				})
 		})
-	})			
+	})
+
+	describe('returns a messge to show that the application has started', () => {
+		it('returns a message the applicatio is now live', done => {
+			chai.request(app)
+				.get(`${BASE_URL}/`)
+				.set('content-type', 'application/json')
+				.end((err, res) => {
+					res.should.have.status(200)
+					res.type.should.eql('application/json')
+					should.exist(res.body.message)
+					res.body.message.should.eql('Hey! Meal\'s ready!!')
+					done()
+				})
+		})
+	})					
 
 })
