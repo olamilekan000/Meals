@@ -51,9 +51,9 @@ export class Meal {
 
 					// push the length of the array into the ingredient length
 					ingredientLength.push(filteredIngredients.length)
-				} catch(e) {
+				} catch(err) {
 					// statements
-					console.log(e);
+					next(err);
 				}
 			}
 
