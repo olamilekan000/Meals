@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "preinstall": "npm install pm2 babel -g",
     "nyc": "nyc --reporter=html --reporter=text mocha --timeout 60000 --require @babel/register --require @babel/polyfill test/*.js --exit",
     "test:dev": "SET NODE_ENV=test&& npm run nyc",
     "test": "NODE_ENV=test&& npm run nyc",
     "dev": "nodemon --exec babel-node app.js",
     "start": "babel-node app.js",
+    "prod": "pm2-runtime start ecosystem.config.js --env production",
     "lint": "eslint --fix app.js ./src"
   },
   "keywords": [],

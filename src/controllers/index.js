@@ -4,7 +4,6 @@ export class Meal {
 	static async getMealCategories(req, res, next){
 		try {
 			const mealCategories = await axios.get(`https://www.themealdb.com/api/json/v1/1/categories.php`)
-			// console.log(mealCategories) 
 			res.status(200).json({
 				data: mealCategories.data.categories
 			})
