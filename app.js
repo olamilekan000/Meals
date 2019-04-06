@@ -22,11 +22,11 @@ app.get(`${BASE_URI}`, (req, res) => {
 	})
 })
 
+app.use(BASE_URI, router)
+
 app.post(`${BASE_URI}/*`, notFound.returnNotFound)
 app.put(`${BASE_URI}/*`, notFound.returnNotFound)
 app.delete(`${BASE_URI}/*`, notFound.returnNotFound)
-
-app.use(BASE_URI, router)
 
 app.use((err, req, res) => {
 	res.status(500).json({
