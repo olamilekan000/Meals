@@ -16,6 +16,21 @@ describe('tests for meal app', () => {
 
 	describe('Not found requests', () => {
 
+		it('returns a not found response when requests is made to a non exitsing route: GET', (done) => {
+			chai.request(app)
+				.get(`${BASE_URL}/meal`)
+				.set('content-type', 'application/json')
+				.end((err, res) => {
+					res.should.have.status(404)
+					res.type.should.eql('application/json')
+					should.exist(res.body.message)
+					should.exist(res.body.error)
+					res.body.message.should.eql(`The resource doesn't exist`)
+					res.body.error.should.eql(`Not found!`)
+					done()
+				})
+		})		
+
 		it('returns a not found response when requests is made to a non exitsing route: POST', (done) => {
 			chai.request(app)
 				.post(`${BASE_URL}/meal`)
